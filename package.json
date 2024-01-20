@@ -1,0 +1,6 @@
+{
+  "homepage": "https://mikulasbrazda.github.io/vin/",
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
+  }
+}
