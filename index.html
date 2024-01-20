@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>3D Knot Generator</title>
+    <style>
+        /* Add your CSS styles for the layout */
+        #ui {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        canvas {
+            display: block; /* Remove margins */
+        }
+    </style>
+</head>
+<body>
+    <!-- make ui for each knot, so it should be list which can be appended-->
+    
+    <ul id="knotList">
+        <li id="1">Knot 1
+
+        <label for="colorPicker1">Color:</label>
+        <input type="color" id="colorPicker1" value="#00ff00">
+        
+        <label for="radiusSlider1">Radius:</label>
+        <input type="range" id="radiusSlider1" min="1" max="20" step="0.1" value="1">
+
+        <label for="tubeSlider1">Tube:</label>
+        <input type="range" id="tubeSlider1" min="0.1" max="10" step="0.1" value="0.4">
+
+        <label for="radialSegmentsSlider1">Radial Segments:</label>
+        <input type="range" id="radialSegmentsSlider1" min="3" step="1" max="20" value="8">
+        
+        <label for="tubularSegmentsSlider1">Tubular Segments:</label>
+        <input type="range" id="tubularSegmentsSlider1" min="3" step="1" max="20" value="64">
+        <!-- p and q slider -->
+        <label for="pSlider1">p:</label>
+        <input type="range" id="pSlider1" min="1" step="1" max="20" value="2">
+        <label for="qSlider1">q:</label>
+        <input type="range" id="qSlider1" min="1" step="1" max="20" value="3">
+        
+        <!-- Add more controls for X, Y, Z coordinates -->
+        
+        <button id="deleteKnot">Delete knot</button></li>
+        <!-- add button-->
+   
+
+    </ul>  
+    <button id="addKnot">Add knot</button>
+    
+    <script src="https://threejs.org/build/three.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
