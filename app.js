@@ -17,17 +17,12 @@ class Knot {
         const material = new THREE.MeshPhongMaterial({ color: 0x00ff00, shininess: 100 });
         this.knotMesh = new THREE.Mesh(geometry, material);
     }
-    // animate () {
-    //     requestAnimationFrame(this.anim);
-    //     this.knotMesh.rotation.x += 0.01;
-    //     this.knotMesh.rotation.y += 0.01;
-    //     renderer.render(scene, camera);
-    // }
     calculateMesh() {
         this.knotMesh.geometry.dispose(); // Dispose of the old geometry
         let geometry = new THREE.TorusKnotGeometry(this.radius, this.tube, this.tubularSegments, this.radialSegments, this.p, this.q);
         this.knotMesh.geometry = geometry;
     }
+
 }
 
 //create list of knots
@@ -83,53 +78,44 @@ function onWindowResize() {
 
 function onColorChange(event, knot) {
     const newColor = event.target.value;
-    knot.material.color.set(newColor);
+    knot.knotMesh.material.color.set(newColor);
 }
 
 function onRadiusChange(event, knot) {
     knot.radius = event.target.value;
-    // You'll need to recreate the geometry with the new number of points
     knot.calculateMesh();
 }
 
 function onTubeChange(event, knot) {
     knot.tube = event.target.value;
-    // You'll need to recreate the geometry with the new number of points
+
     knot.calculateMesh();
 }
 
 function onRadialSegmentsChange(event, knot) {
     knot.radialSegments = event.target.value;
-    // You'll need to recreate the geometry with the new number of points
     knot.calculateMesh();
 }
 
 function onTubularSegmentsChange(event, knot) {
     knot.tubularSegments = event.target.value;
-    // You'll need to recreate the geometry with the new number of points
     knot.calculateMesh();
 }
 
 function onPSliderChange(event, knot) {
     knot.p = event.target.value;
-    // You'll need to recreate the geometry with the new number of points
     knot.calculateMesh();
 }
 
 function onQSliderChange(event, knot) {
     knot.q = event.target.value;
-    // You'll need to recreate the geometry with the new number of points
     knot.calculateMesh();
 }
 
-// function onDeleteKnot(event, knot) {
-//     // You'll need to remove the knot from the scene
-//     scene.remove(knot);
-//     // You'll also need to remove the knot from the DOM
-// }
-
 function addUi(newKnot) {
-    document.getElementById('knotList').innerHTML += `<li id="${newKnot.id}">${newKnot.id}        
+    let listItem = document.createElement('li');
+    listItem.id = newKnot.id;
+    listItem.innerHTML = `Knot ${newKnot.id}        
     <label for="colorPicker${newKnot.id}">Color:</label>
     <input type="color" id="colorPicker${newKnot.id}" value="#00ff00">
     
@@ -148,8 +134,8 @@ function addUi(newKnot) {
     <label for="pSlider${newKnot.id}">p:</label>
     <input type="range" id="pSlider${newKnot.id}" min="1" step="1" max="20" value="2">
     <label for="qSlider${newKnot.id}">q:</label>
-    <input type="range" id="qSlider${newKnot.id}" min="1" step="1" max="20" value="3">
-    </li>`;
+    <input type="range" id="qSlider${newKnot.id}" min="1" step="1" max="20" value="3"></input>`;
+    document.getElementById('knotList').appendChild(listItem);
     //pass knot to event listeners
     document.getElementById(`colorPicker${newKnot.id}`).addEventListener('change', function (event) { onColorChange(event, newKnot) });
     document.getElementById(`radiusSlider${newKnot.id}`).addEventListener('input',  function (event) { onRadiusChange(event, newKnot)});
